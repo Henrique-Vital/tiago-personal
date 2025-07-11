@@ -5,12 +5,12 @@ import { Dumbbell, Instagram, Menu, MoveRight, ShieldCheck, Sparkles, Target, Us
 
 export default function ModernPersonalTrainerPage() {
   const results = [
-    { img: "/resultado-1.png", name: "Juliana S." },
-    { img: "/resultado-2.png", name: "Carla M." },
-    { img: "/resultado-3.png", name: "Pedro H." },
-    { img: "/resultado-4.png", name: "Marcos V." },
-    { img: "/resultado-5.png", name: "Fernanda L." },
-    { img: "/resultado-6.png", name: "Ricardo P." },
+    { img: "/resultado-1.png", name: "Joseane A." },
+    { img: "/resultado-2.png", name: "Marcela C." },
+    { img: "/resultado-3.png", name: "Samuel." },
+    { img: "/resultado-4.png", name: "Cleberson M." },
+    { img: "/resultado-5.png", name: "Paola C." },
+    { img: "/resultado-6.png", name: "Ricardo K." },
   ]
 
   return (
