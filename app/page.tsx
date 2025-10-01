@@ -1,14 +1,27 @@
+"use client"
+
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { Dumbbell, Instagram, Menu, MoveRight, ShieldCheck, Sparkles, Target, Users, Zap } from "lucide-react"
+import { Dumbbell, Instagram, Menu, MoveRight, ShieldCheck, Sparkles, Target, Users, Zap, X } from "lucide-react"
+import { useState } from "react"
 
 export default function ModernPersonalTrainerPage() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
+    }
+    setMobileMenuOpen(false)
+  }
+
   const results = [
     { img: "/resultado-1.png", name: "Joseane A." },
     { img: "/resultado-2.png", name: "Marcela C." },
-    { img: "/resultado-3.png", name: "Samuel." },
-    { img: "/resultado-4.png", name: "Cleberson M." },
+    { img: "/resultado-3.png", name: "Samuel" },
+    { img: "/resultado-4.png", name: "Leberson M." },
     { img: "/resultado-5.png", name: "Paola C." },
     { img: "/resultado-6.png", name: "Ricardo K." },
   ]
@@ -16,48 +29,97 @@ export default function ModernPersonalTrainerPage() {
   return (
     <div className="flex flex-col min-h-screen bg-black overflow-x-hidden">
       <header className="px-4 lg:px-8 h-20 flex items-center fixed top-0 left-0 right-0 z-50 bg-black/60 backdrop-blur-lg border-b border-gray-800">
-        <Link href="#" className="flex items-center justify-center" prefetch={false}>
+        <Link href="/" className="flex items-center justify-center" prefetch={false}>
           <span className="text-2xl md:text-3xl font-extrabold text-white tracking-tight">
-            Personal <span className="text-[#1e3a8a]">Tiago Rodolfo</span>
+            Personal <span className="text-[#1e3a8a]">Thiago Rodolfo</span>
           </span>
-          <span className="sr-only">Personal Tiago Rodolfo</span>
+          <span className="sr-only">Personal Thiago Rodolfo</span>
         </Link>
         <nav className="ml-auto hidden lg:flex gap-6 items-center">
-          <Link
-            href="#sobre"
-            className="text-sm font-medium text-gray-300 hover:text-white transition-colors"
-            prefetch={false}
+          <button
+            onClick={() => scrollToSection("sobre")}
+            className="text-sm font-medium text-gray-300 hover:text-white transition-colors cursor-pointer"
           >
             Sobre
-          </Link>
-          <Link
-            href="#resultados"
-            className="text-sm font-medium text-gray-300 hover:text-white transition-colors"
-            prefetch={false}
+          </button>
+          <button
+            onClick={() => scrollToSection("resultados")}
+            className="text-sm font-medium text-gray-300 hover:text-white transition-colors cursor-pointer"
           >
             Resultados
-          </Link>
-          <Link
-            href="#servicos"
-            className="text-sm font-medium text-gray-300 hover:text-white transition-colors"
-            prefetch={false}
+          </button>
+          <button
+            onClick={() => scrollToSection("servicos")}
+            className="text-sm font-medium text-gray-300 hover:text-white transition-colors cursor-pointer"
           >
             Serviços
-          </Link>
+          </button>
         </nav>
         <Button
-          asChild
+          onClick={() => scrollToSection("contato")}
           className="ml-8 hidden lg:flex bg-[#1e3a8a] hover:bg-[#1e3a8a]/90 rounded-full shadow-lg shadow-[#1e3a8a]/20"
         >
-          <Link href="#contato">
-            Comece Agora <MoveRight className="ml-2 h-4 w-4" />
-          </Link>
+          Comece Agora <MoveRight className="ml-2 h-4 w-4" />
         </Button>
-        <Button variant="ghost" size="icon" className="ml-auto lg:hidden text-white hover:bg-gray-800">
-          <Menu className="h-6 w-6" />
+        <Button
+          asChild
+          variant="outline"
+          className="ml-4 hidden lg:flex border-[#1e3a8a] text-[#1e3a8a] hover:bg-[#1e3a8a] hover:text-white rounded-full bg-transparent"
+        >
+          <Link href="/links">Links</Link>
+        </Button>
+        <Button
+          variant="ghost"
+          size="icon"
+          className="ml-auto lg:hidden text-white hover:bg-gray-800"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
+          {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           <span className="sr-only">Abrir menu</span>
         </Button>
       </header>
+
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-40 lg:hidden">
+          <div className="fixed inset-0 bg-black/50" onClick={() => setMobileMenuOpen(false)}></div>
+          <div className="fixed top-20 left-0 right-0 bg-gray-900 border-b border-gray-800 p-4">
+            <nav className="flex flex-col space-y-4">
+              <button
+                onClick={() => scrollToSection("sobre")}
+                className="text-left text-white hover:text-[#1e3a8a] transition-colors py-2"
+              >
+                Sobre
+              </button>
+              <button
+                onClick={() => scrollToSection("resultados")}
+                className="text-left text-white hover:text-[#1e3a8a] transition-colors py-2"
+              >
+                Resultados
+              </button>
+              <button
+                onClick={() => scrollToSection("servicos")}
+                className="text-left text-white hover:text-[#1e3a8a] transition-colors py-2"
+              >
+                Serviços
+              </button>
+              <button
+                onClick={() => scrollToSection("contato")}
+                className="text-left text-white hover:text-[#1e3a8a] transition-colors py-2"
+              >
+                Contato
+              </button>
+              <Link
+                href="/links"
+                className="text-left text-white hover:text-[#1e3a8a] transition-colors py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Links
+              </Link>
+            </nav>
+          </div>
+        </div>
+      )}
 
       <main className="flex-1">
         {/* Hero Section */}
@@ -67,24 +129,25 @@ export default function ModernPersonalTrainerPage() {
         >
           <div
             className="absolute inset-0 z-0 bg-cover bg-center"
-            style={{ backgroundImage: "url('/hero-background.jpg')" }}
+            style={{ backgroundImage: "url('/hero-background-new.jpg')" }}
           ></div>
+          <div className="absolute inset-0 z-[1] bg-black/40"></div>
           <div className="relative z-10 container px-4 md:px-6 animate-fade-in-up">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter text-white drop-shadow-2xl mb-4">
               SEU CORPO, SUAS REGRAS.
               <br />
               <span className="text-[#1e3a8a]">NOSSO PLANO.</span>
             </h1>
-            <p className="max-w-2xl mx-auto text-gray-300 md:text-xl mb-8">
+            <p className="max-w-2xl mx-auto text-gray-200 md:text-xl mb-8 drop-shadow-lg">
               Chega de treinos genéricos. Alcance a sua melhor versão com um acompanhamento que entende seus limites e
               te leva além.
             </p>
             <Button
-              asChild
+              onClick={() => scrollToSection("contato")}
               size="lg"
-              className="h-14 px-10 rounded-full bg-[#1e3a8a] text-lg font-bold shadow-lg shadow-[#1e3a8a]/30 hover:scale-105 transition-transform"
+              className="h-14 px-10 rounded-full bg-[#1e3a8a] text-lg font-bold shadow-lg shadow-[#1e3a8a]/30 hover:scale-105 transition-transform cursor-pointer"
             >
-              <Link href="#contato">Quero transformar meu corpo</Link>
+              Quero transformar meu corpo
             </Button>
           </div>
         </section>
@@ -97,7 +160,7 @@ export default function ModernPersonalTrainerPage() {
                 QUEM GUIA SEU TREINO
               </div>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white">
-                Tiago Rodolfo: Mais que um Personal, um Parceiro de Treino.
+                Thiago Rodolfo: Mais que um Personal, um Parceiro de Treino.
               </h2>
               <p className="text-gray-400 text-lg">
                 Com uma paixão que vai do levantamento de peso à ciência do movimento, minha missão é desmistificar o
@@ -127,7 +190,7 @@ export default function ModernPersonalTrainerPage() {
             <div className="relative h-[500px] rounded-2xl overflow-hidden shadow-2xl">
               <Image
                 src="/thiago-rodolfo.png"
-                alt="Foto de Tiago Rodolfo"
+                alt="Foto de Thiago Rodolfo"
                 layout="fill"
                 objectFit="cover"
                 className="transform hover:scale-105 transition-transform duration-500"
@@ -218,26 +281,24 @@ export default function ModernPersonalTrainerPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center max-w-md mx-auto w-full">
               <Button
-                asChild
+                onClick={() => window.open("https://wa.me/5512988427021", "_blank")}
                 size="lg"
                 className="w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 h-16 px-8 rounded-full text-lg font-bold"
               >
-                <Link href="https://wa.me/5512988427021" target="_blank" className="flex items-center gap-3">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-                  </svg>
-                  <span>Conversar no WhatsApp</span>
-                </Link>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                </svg>
+                <span>Conversar no WhatsApp</span>
               </Button>
               <Button
                 asChild
@@ -266,22 +327,27 @@ export default function ModernPersonalTrainerPage() {
             <p className="text-xs text-gray-600">Todos os direitos reservados.</p>
           </div>
           <div className="flex gap-6">
-            <Link
-              href="https://wa.me/5512988427021"
-              target="_blank"
-              className="text-gray-400 hover:text-white transition-colors"
-              prefetch={false}
+            <Button
+              onClick={() => window.open("https://wa.me/5512988427021", "_blank")}
+              variant="outline"
+              className="bg-transparent border-2 border-gray-700 text-gray-400 hover:text-white hover:bg-gray-800 hover:border-gray-600 shadow-lg hover:shadow-xl transition-all duration-300 h-12 px-6 rounded-full text-lg font-bold"
             >
               WhatsApp
-            </Link>
-            <Link
-              href="https://www.instagram.com/tiagorodolfopersonal/"
-              target="_blank"
-              className="text-gray-400 hover:text-white transition-colors"
-              prefetch={false}
+            </Button>
+            <Button
+              asChild
+              variant="outline"
+              className="bg-transparent border-2 border-gray-700 text-gray-400 hover:text-white hover:bg-gray-800 hover:border-gray-600 shadow-lg hover:shadow-xl transition-all duration-300 h-12 px-6 rounded-full text-lg font-bold"
             >
-              Instagram
-            </Link>
+              <Link
+                href="https://www.instagram.com/tiagorodolfopersonal/"
+                target="_blank"
+                className="flex items-center gap-3"
+              >
+                <Instagram className="h-6 w-6" />
+                <span>Instagram</span>
+              </Link>
+            </Button>
           </div>
         </div>
       </footer>
