@@ -212,167 +212,164 @@ export default function LinksPage() {
         {/* Links Section */}
         <div className="space-y-16 lg:space-y-24">
           {links.map((link, index) => (
-            <Card
+            <Link
               key={index}
-              className={`bg-transparent border-0 group hover:scale-[1.02] transition-all duration-500 ${
-                isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"
-              }`}
-              style={{
-                overflow: "visible",
-                animationDelay: `${0.6 + index * 0.1}s`,
-                transitionDelay: `${index * 0.1}s`,
-              }}
+              href={link.url}
+              target={link.url.startsWith("http") ? "_blank" : "_self"}
+              className="block"
             >
-              <CardContent className="p-0" style={{ overflow: "visible" }}>
-                <div className="relative" style={{ overflow: "visible" }}>
-                  {/* Glow Effect on Hover */}
-                  <div
-                    className="absolute inset-0 rounded-[2rem] lg:rounded-[3rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl"
-                    style={{
-                      background: link.glowColor,
-                      transform: "scale(1.05)",
-                    }}
-                  ></div>
-
-                  <div
-                    className={`bg-gradient-to-r ${link.gradient} rounded-[2rem] lg:rounded-[3rem] relative min-h-[145px] lg:h-[280px] flex items-center shadow-2xl group-hover:shadow-[0_0_50px_rgba(255,255,255,0.1)] transition-all duration-500`}
-                    style={{ overflow: "visible" }}
-                  >
-                    {/* Animated Pattern Overlay */}
-                    <div className="absolute inset-0 opacity-10 overflow-hidden rounded-[2rem] lg:rounded-[3rem]">
-                      <div
-                        className="absolute inset-0 animate-pattern-slide"
-                        style={{
-                          backgroundImage: "radial-gradient(circle at 2px 2px, white 1px, transparent 0)",
-                          backgroundSize: "40px 40px",
-                        }}
-                      ></div>
-                    </div>
-
-                    {/* Shimmer Effect */}
-                    <div className="absolute inset-0 overflow-hidden rounded-[2rem] lg:rounded-[3rem]">
-                      <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
-                    </div>
-
-                    {/* Foto do Thiago - Visível em todas as telas */}
+              <Card
+                className={`bg-transparent border-0 group hover:scale-[1.02] transition-all duration-500 cursor-pointer ${
+                  isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"
+                }`}
+                style={{
+                  overflow: "visible",
+                  animationDelay: `${0.6 + index * 0.1}s`,
+                  transitionDelay: `${index * 0.1}s`,
+                }}
+              >
+                <CardContent className="p-0" style={{ overflow: "visible" }}>
+                  <div className="relative" style={{ overflow: "visible" }}>
+                    {/* Glow Effect on Hover */}
                     <div
-                      className="absolute left-0 top-0 bottom-0 w-[35%] lg:w-[42%]"
-                      style={{ overflow: "visible", zIndex: 10 }}
+                      className="absolute inset-0 rounded-[2rem] lg:rounded-[3rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl"
+                      style={{
+                        background: link.glowColor,
+                        transform: "scale(1.05)",
+                      }}
+                    ></div>
+
+                    <div
+                      className={`bg-gradient-to-r ${link.gradient} rounded-[2rem] lg:rounded-[3rem] relative min-h-[145px] lg:h-[280px] flex items-center shadow-2xl group-hover:shadow-[0_0_50px_rgba(255,255,255,0.1)] transition-all duration-500`}
+                      style={{ overflow: "visible" }}
                     >
-                      <div
-                        className="relative w-full h-full flex items-end justify-center"
-                        style={{ overflow: "visible" }}
-                      >
-                        <Image
-                          src="/thiago-professional.png"
-                          alt="Thiago Rodolfo"
-                          width={340}
-                          height={380}
-                          className="absolute left-2 lg:left-10 bottom-0 w-[130px] h-[170px] lg:w-[270px] lg:h-[360px] object-cover object-top scale-115 group-hover:scale-[1.2] transition-transform duration-500"
+                      {/* Animated Pattern Overlay */}
+                      <div className="absolute inset-0 opacity-10 overflow-hidden rounded-[2rem] lg:rounded-[3rem]">
+                        <div
+                          className="absolute inset-0 animate-pattern-slide"
                           style={{
-                            filter: "drop-shadow(0 8px 25px rgba(0,0,0,0.6))",
-                            zIndex: 15,
+                            backgroundImage: "radial-gradient(circle at 2px 2px, white 1px, transparent 0)",
+                            backgroundSize: "40px 40px",
                           }}
-                        />
+                        ></div>
                       </div>
-                    </div>
 
-                    {/* Conteúdo */}
-                    <div
-                      className="relative w-full flex-1 pl-[40%] pr-3 lg:pl-[46%] lg:pr-8 py-2 lg:py-6 flex flex-col justify-center items-start text-left"
-                      style={{ zIndex: 5 }}
-                    >
-                      {/* Ícone Flutuante */}
+                      {/* Shimmer Effect */}
+                      <div className="absolute inset-0 overflow-hidden rounded-[2rem] lg:rounded-[3rem]">
+                        <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+                      </div>
+
+                      {/* Foto do Thiago - Visível em todas as telas */}
                       <div
-                        className="absolute -top-2 -right-2 lg:-top-4 lg:-right-4 animate-bounce-slow"
-                        style={{ zIndex: 20 }}
+                        className="absolute left-0 top-0 bottom-0 w-[35%] lg:w-[42%]"
+                        style={{ overflow: "visible", zIndex: 10 }}
                       >
-                        <div className="relative">
-                          <div
-                            className={`absolute inset-0 ${link.iconBg} blur-2xl rounded-full scale-150 animate-pulse`}
-                          ></div>
-                          <div
-                            className={`relative ${link.iconBg} backdrop-blur-xl rounded-xl lg:rounded-3xl p-1.5 lg:p-4 border-2 border-white/40 shadow-2xl group-hover:scale-110 group-hover:rotate-12 transition-all duration-300`}
-                          >
-                            <link.icon className="h-4 w-4 lg:h-8 lg:w-8 text-white stroke-[2.5]" />
-                          </div>
+                        <div
+                          className="relative w-full h-full flex items-end justify-center"
+                          style={{ overflow: "visible" }}
+                        >
+                          <Image
+                            src="/thiago-professional.png"
+                            alt="Thiago Rodolfo"
+                            width={340}
+                            height={380}
+                            className="absolute left-2 lg:left-10 bottom-0 w-[130px] h-[170px] lg:w-[270px] lg:h-[360px] object-cover object-top scale-115 group-hover:scale-[1.2] transition-transform duration-500"
+                            style={{
+                              filter: "drop-shadow(0 8px 25px rgba(0,0,0,0.6))",
+                              zIndex: 15,
+                            }}
+                          />
                         </div>
                       </div>
 
-                      {/* Category Tag */}
-                      <div className="mb-0.5 lg:mb-2 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
-                        <span className="inline-block text-[7px] lg:text-[9px] font-black uppercase tracking-[0.15em] lg:tracking-[0.25em] text-white/60 px-1.5 lg:px-3 py-0.5 lg:py-2 bg-black/20 backdrop-blur-sm rounded-full border border-white/20 shadow-[0_0_12px_rgba(0,0,0,0.3)] group-hover:border-white/40 transition-colors">
-                          {link.category}
-                        </span>
-                      </div>
-
-                      {/* Título Principal */}
-                      <h2
-                        className="text-base lg:text-4xl xl:text-5xl font-black leading-[0.8] tracking-tight mb-0.5 lg:mb-3 relative animate-fade-in-up"
-                        style={{ animationDelay: "0.2s" }}
-                      >
-                        <span className="text-white drop-shadow-2xl [text-shadow:_0_4px_12px_rgb(0_0_0_/_80%),_0_0_40px_rgba(255,255,255,0.1)] group-hover:[text-shadow:_0_4px_12px_rgb(0_0_0_/_80%),_0_0_60px_rgba(255,255,255,0.3)] transition-all duration-300">
-                          {link.title}
-                        </span>
-                      </h2>
-
-                      {/* Divider Line */}
+                      {/* Conteúdo */}
                       <div
-                        className="w-8 lg:w-16 h-0.5 lg:h-1 bg-gradient-to-r from-white/60 via-white/40 to-transparent rounded-full mb-0.5 lg:mb-2 group-hover:w-10 lg:group-hover:w-24 transition-all duration-500 animate-fade-in-up"
-                        style={{ animationDelay: "0.3s" }}
-                      ></div>
-
-                      {/* Subtítulo com Badge */}
-                      <div className="mb-0.5 lg:mb-2 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
+                        className="relative w-full flex-1 pl-[40%] pr-3 lg:pl-[46%] lg:pr-8 py-2 lg:py-6 flex flex-col justify-center items-start text-left"
+                        style={{ zIndex: 5 }}
+                      >
+                        {/* Ícone Flutuante */}
                         <div
-                          className={`inline-flex items-center gap-1 lg:gap-2 px-1.5 lg:px-4 py-0.5 lg:py-2 ${link.badgeBg} backdrop-blur-md rounded-lg lg:rounded-2xl border border-white/30 shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300`}
+                          className="absolute -top-2 -right-2 lg:-top-4 lg:-right-4 animate-bounce-slow"
+                          style={{ zIndex: 20 }}
                         >
-                          <div className="w-0.5 h-0.5 lg:w-1.5 lg:h-1.5 bg-white rounded-full animate-pulse shadow-[0_0_8px_rgba(255,255,255,0.8)]"></div>
-                          <span className="text-[8px] lg:text-sm font-bold text-white tracking-wide drop-shadow-lg">
-                            {link.subtitle}
+                          <div className="relative">
+                            <div
+                              className={`absolute inset-0 ${link.iconBg} blur-2xl rounded-full scale-150 animate-pulse`}
+                            ></div>
+                            <div
+                              className={`relative ${link.iconBg} backdrop-blur-xl rounded-xl lg:rounded-3xl p-1.5 lg:p-4 border-2 border-white/40 shadow-2xl group-hover:scale-110 group-hover:rotate-12 transition-all duration-300`}
+                            >
+                              <link.icon className="h-4 w-4 lg:h-8 lg:w-8 text-white stroke-[2.5]" />
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Category Tag */}
+                        <div className="mb-0.5 lg:mb-2 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
+                          <span className="inline-block text-[7px] lg:text-[9px] font-black uppercase tracking-[0.15em] lg:tracking-[0.25em] text-white/60 px-1.5 lg:px-3 py-0.5 lg:py-2 bg-black/20 backdrop-blur-sm rounded-full border border-white/20 shadow-[0_0_12px_rgba(0,0,0,0.3)] group-hover:border-white/40 transition-colors">
+                            {link.category}
                           </span>
                         </div>
-                      </div>
 
-                      {/* Descrição */}
-                      <p
-                        className="text-[8px] lg:text-sm font-medium leading-tight lg:leading-snug mb-1.5 lg:mb-4 max-w-full lg:max-w-[280px] drop-shadow-lg [text-shadow:_0_2px_8px_rgb(0_0_0_/_60%)] animate-fade-in-up"
-                        style={{ animationDelay: "0.5s" }}
-                      >
-                        {link.description}
-                      </p>
+                        {/* Título Principal */}
+                        <h2
+                          className="text-base lg:text-4xl xl:text-5xl font-black leading-[0.8] tracking-tight mb-0.5 lg:mb-3 relative animate-fade-in-up"
+                          style={{ animationDelay: "0.2s" }}
+                        >
+                          <span className="text-white drop-shadow-2xl [text-shadow:_0_4px_12px_rgb(0_0_0_/_80%),_0_0_40px_rgba(255,255,255,0.1)] group-hover:[text-shadow:_0_4px_12px_rgb(0_0_0_/_80%),_0_0_60px_rgba(255,255,255,0.3)] transition-all duration-300">
+                            {link.title}
+                          </span>
+                        </h2>
 
-                      {/* CTA Button */}
-                      <Link
-                        href={link.url}
-                        target={link.url.startsWith("http") ? "_blank" : "_self"}
-                        className="group/btn animate-fade-in-up w-full lg:w-auto"
-                        style={{ animationDelay: "0.6s" }}
-                      >
-                        <div className="relative inline-flex items-center gap-2 w-full lg:w-auto">
-                          {/* Glow Effect */}
-                          <div className="absolute inset-0 bg-white/30 blur-xl rounded-full opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
+                        {/* Divider Line */}
+                        <div
+                          className="w-8 lg:w-16 h-0.5 lg:h-1 bg-gradient-to-r from-white/60 via-white/40 to-transparent rounded-full mb-0.5 lg:mb-2 group-hover:w-10 lg:group-hover:w-24 transition-all duration-500 animate-fade-in-up"
+                          style={{ animationDelay: "0.3s" }}
+                        ></div>
 
-                          {/* Button */}
-                          <div className="relative flex items-center justify-center gap-1 bg-white/95 hover:bg-white text-gray-900 font-black text-[9px] lg:text-sm px-3.5 lg:px-6 py-1.5 lg:py-3 rounded-full shadow-xl hover:shadow-2xl transform hover:scale-110 transition-all duration-300 w-full lg:w-auto">
-                            <span className="tracking-wide">{link.buttonText}</span>
-                            <svg
-                              className="w-2.5 h-2.5 lg:w-4 lg:h-4 transform group-hover/btn:translate-x-1 transition-transform"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                              strokeWidth="3"
-                            >
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                            </svg>
+                        {/* Subtítulo com Badge */}
+                        <div className="mb-0.5 lg:mb-2 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
+                          <div
+                            className={`inline-flex items-center gap-1 lg:gap-2 px-1.5 lg:px-4 py-0.5 lg:py-2 ${link.badgeBg} backdrop-blur-md rounded-lg lg:rounded-2xl border border-white/30 shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300`}
+                          >
+                            <div className="w-0.5 h-0.5 lg:w-1.5 lg:h-1.5 bg-white rounded-full animate-pulse shadow-[0_0_8px_rgba(255,255,255,0.8)]"></div>
+                            <span className="text-[8px] lg:text-sm font-bold text-white tracking-wide drop-shadow-lg">
+                              {link.subtitle}
+                            </span>
                           </div>
                         </div>
-                      </Link>
+
+                        {/* Descrição */}
+                        <p
+                          className="text-[8px] lg:text-sm font-medium leading-tight lg:leading-snug mb-1.5 lg:mb-4 max-w-full lg:max-w-[280px] drop-shadow-lg [text-shadow:_0_2px_8px_rgb(0_0_0_/_60%)] animate-fade-in-up"
+                          style={{ animationDelay: "0.5s" }}
+                        >
+                          {link.description}
+                        </p>
+
+                        {/* CTA Text */}
+                        <div className="animate-fade-in-up w-full lg:w-auto" style={{ animationDelay: "0.6s" }}>
+                          <div className="relative inline-flex items-center gap-1.5 w-full lg:w-auto">
+                            <div className="relative flex items-center justify-center gap-1.5 bg-white/10 backdrop-blur-md border border-white/30 text-white font-bold text-[9px] lg:text-sm px-3.5 lg:px-6 py-1.5 lg:py-3 rounded-full shadow-lg group-hover:bg-white/20 group-hover:border-white/50 group-hover:shadow-xl transition-all duration-300 w-full lg:w-auto">
+                              <span className="tracking-wide drop-shadow-lg">{link.buttonText}</span>
+                              <svg
+                                className="w-2.5 h-2.5 lg:w-4 lg:h-4 transform group-hover:translate-x-1 transition-transform"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                strokeWidth="3"
+                              >
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                              </svg>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            </Link>
           ))}
         </div>
 
