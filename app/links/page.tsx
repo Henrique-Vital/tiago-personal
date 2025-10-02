@@ -156,29 +156,33 @@ export default function LinksPage() {
       </div>
 
       {/* Header */}
-      <header className="px-4 lg:px-8 py-6 border-b border-gray-800 backdrop-blur-xl bg-black/50 sticky top-0 z-50 animate-slide-down">
+      <header className="px-4 lg:px-8 py-4 lg:py-6 border-b border-gray-800 backdrop-blur-xl bg-black/50 sticky top-0 z-50 animate-slide-down">
         <div className="container mx-auto flex items-center justify-between">
-          <Button asChild variant="ghost" className="text-gray-400 hover:text-white transition-all hover:scale-110">
+          <Button
+            asChild
+            variant="ghost"
+            className="text-gray-400 hover:text-white transition-all hover:scale-110 text-sm"
+          >
             <Link href="/" className="flex items-center gap-2">
-              <ArrowLeft className="h-4 w-4" />
-              Voltar
+              <ArrowLeft className="h-3 w-3 lg:h-4 lg:w-4" />
+              <span className="hidden sm:inline">Voltar</span>
             </Link>
           </Button>
-          <span className="text-xl font-bold text-white">
+          <span className="text-base lg:text-xl font-bold text-white">
             Personal <span className="text-[#1e3a8a]">Thiago Rodolfo</span>
           </span>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-8 max-w-3xl relative z-10">
+      <main className="container mx-auto px-4 py-4 lg:py-6 max-w-3xl relative z-10">
         {/* Profile Section */}
         <div
-          className={`text-center mb-20 transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+          className={`text-center mb-12 lg:mb-20 transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
-          <div className="relative w-32 h-32 mx-auto mb-6 group">
+          <div className="relative w-24 h-24 lg:w-32 lg:h-32 mx-auto mb-4 lg:mb-6 group">
             <div className="absolute inset-0 bg-[#1e3a8a] rounded-full blur-xl opacity-50 group-hover:opacity-100 transition-opacity animate-pulse"></div>
-            <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-[#1e3a8a] shadow-2xl transform group-hover:scale-110 transition-transform duration-300">
+            <div className="relative w-24 h-24 lg:w-32 lg:h-32 rounded-full overflow-hidden border-4 border-[#1e3a8a] shadow-2xl transform group-hover:scale-110 transition-transform duration-300">
               <Image
                 src="/thiago-professional.png"
                 alt="Thiago Rodolfo"
@@ -188,14 +192,17 @@ export default function LinksPage() {
               />
             </div>
           </div>
-          <h1 className="text-4xl font-bold mb-4 animate-fade-in">Personal Thiago Rodolfo</h1>
-          <p className="text-gray-400 text-lg mb-6 leading-relaxed animate-fade-in" style={{ animationDelay: "0.2s" }}>
+          <h1 className="text-2xl lg:text-4xl font-bold mb-3 lg:mb-4 animate-fade-in">Personal Thiago Rodolfo</h1>
+          <p
+            className="text-gray-400 text-sm lg:text-lg mb-4 lg:mb-6 leading-relaxed animate-fade-in px-4"
+            style={{ animationDelay: "0.2s" }}
+          >
             🏋️‍♂️ <span className="text-[#1e3a8a] font-semibold">Personal Trainer Especializado</span>
             <br />💪 <span className="text-green-400 font-semibold">+500 Transformações Reais</span>
             <br />📱 <span className="text-purple-400 font-semibold">Consultoria Online & Presencial</span>
           </p>
           <div
-            className="flex justify-center gap-2 text-base text-gray-500 animate-fade-in"
+            className="flex justify-center gap-2 text-sm lg:text-base text-gray-500 animate-fade-in"
             style={{ animationDelay: "0.4s" }}
           >
             <span>@tiagorodolfopersonal</span>
@@ -203,7 +210,7 @@ export default function LinksPage() {
         </div>
 
         {/* Links Section */}
-        <div className="space-y-24">
+        <div className="space-y-16 lg:space-y-24">
           {links.map((link, index) => (
             <Card
               key={index}
@@ -220,7 +227,7 @@ export default function LinksPage() {
                 <div className="relative" style={{ overflow: "visible" }}>
                   {/* Glow Effect on Hover */}
                   <div
-                    className="absolute inset-0 rounded-[3rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl"
+                    className="absolute inset-0 rounded-[2rem] lg:rounded-[3rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl"
                     style={{
                       background: link.glowColor,
                       transform: "scale(1.05)",
@@ -228,11 +235,11 @@ export default function LinksPage() {
                   ></div>
 
                   <div
-                    className={`bg-gradient-to-r ${link.gradient} rounded-[3rem] relative h-[280px] flex items-center shadow-2xl group-hover:shadow-[0_0_50px_rgba(255,255,255,0.1)] transition-all duration-500`}
+                    className={`bg-gradient-to-r ${link.gradient} rounded-[2rem] lg:rounded-[3rem] relative min-h-[145px] lg:h-[280px] flex items-center shadow-2xl group-hover:shadow-[0_0_50px_rgba(255,255,255,0.1)] transition-all duration-500`}
                     style={{ overflow: "visible" }}
                   >
                     {/* Animated Pattern Overlay */}
-                    <div className="absolute inset-0 opacity-10 overflow-hidden rounded-[3rem]">
+                    <div className="absolute inset-0 opacity-10 overflow-hidden rounded-[2rem] lg:rounded-[3rem]">
                       <div
                         className="absolute inset-0 animate-pattern-slide"
                         style={{
@@ -243,12 +250,15 @@ export default function LinksPage() {
                     </div>
 
                     {/* Shimmer Effect */}
-                    <div className="absolute inset-0 overflow-hidden rounded-[3rem]">
+                    <div className="absolute inset-0 overflow-hidden rounded-[2rem] lg:rounded-[3rem]">
                       <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
                     </div>
 
-                    {/* Foto do Thiago */}
-                    <div className="absolute left-0 top-0 bottom-0 w-[42%]" style={{ overflow: "visible", zIndex: 10 }}>
+                    {/* Foto do Thiago - Visível em todas as telas */}
+                    <div
+                      className="absolute left-0 top-0 bottom-0 w-[35%] lg:w-[42%]"
+                      style={{ overflow: "visible", zIndex: 10 }}
+                    >
                       <div
                         className="relative w-full h-full flex items-end justify-center"
                         style={{ overflow: "visible" }}
@@ -258,7 +268,7 @@ export default function LinksPage() {
                           alt="Thiago Rodolfo"
                           width={340}
                           height={380}
-                          className="absolute left-10 bottom-0 w-[270px] h-[360px] object-cover object-top scale-115 group-hover:scale-[1.2] transition-transform duration-500"
+                          className="absolute left-2 lg:left-10 bottom-0 w-[130px] h-[170px] lg:w-[270px] lg:h-[360px] object-cover object-top scale-115 group-hover:scale-[1.2] transition-transform duration-500"
                           style={{
                             filter: "drop-shadow(0 8px 25px rgba(0,0,0,0.6))",
                             zIndex: 15,
@@ -269,33 +279,36 @@ export default function LinksPage() {
 
                     {/* Conteúdo */}
                     <div
-                      className="relative flex-1 pl-[46%] pr-8 py-6 flex flex-col justify-center items-start text-left h-full"
+                      className="relative w-full flex-1 pl-[40%] pr-3 lg:pl-[46%] lg:pr-8 py-2 lg:py-6 flex flex-col justify-center items-start text-left"
                       style={{ zIndex: 5 }}
                     >
                       {/* Ícone Flutuante */}
-                      <div className="absolute -top-4 -right-4 animate-bounce-slow" style={{ zIndex: 20 }}>
+                      <div
+                        className="absolute -top-2 -right-2 lg:-top-4 lg:-right-4 animate-bounce-slow"
+                        style={{ zIndex: 20 }}
+                      >
                         <div className="relative">
                           <div
                             className={`absolute inset-0 ${link.iconBg} blur-2xl rounded-full scale-150 animate-pulse`}
                           ></div>
                           <div
-                            className={`relative ${link.iconBg} backdrop-blur-xl rounded-3xl p-4 border-2 border-white/40 shadow-2xl group-hover:scale-110 group-hover:rotate-12 transition-all duration-300`}
+                            className={`relative ${link.iconBg} backdrop-blur-xl rounded-xl lg:rounded-3xl p-1.5 lg:p-4 border-2 border-white/40 shadow-2xl group-hover:scale-110 group-hover:rotate-12 transition-all duration-300`}
                           >
-                            <link.icon className="h-8 w-8 text-white stroke-[2.5]" />
+                            <link.icon className="h-4 w-4 lg:h-8 lg:w-8 text-white stroke-[2.5]" />
                           </div>
                         </div>
                       </div>
 
                       {/* Category Tag */}
-                      <div className="mb-2 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
-                        <span className="inline-block text-[9px] font-black uppercase tracking-[0.25em] text-white/60 px-3 py-1 bg-black/20 backdrop-blur-sm rounded-full border border-white/20 shadow-[0_0_12px_rgba(0,0,0,0.3)] group-hover:border-white/40 transition-colors">
+                      <div className="mb-0.5 lg:mb-2 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
+                        <span className="inline-block text-[7px] lg:text-[9px] font-black uppercase tracking-[0.15em] lg:tracking-[0.25em] text-white/60 px-1.5 lg:px-3 py-0.5 lg:py-2 bg-black/20 backdrop-blur-sm rounded-full border border-white/20 shadow-[0_0_12px_rgba(0,0,0,0.3)] group-hover:border-white/40 transition-colors">
                           {link.category}
                         </span>
                       </div>
 
                       {/* Título Principal */}
                       <h2
-                        className="text-4xl md:text-5xl font-black leading-[0.85] tracking-tight mb-3 relative animate-fade-in-up"
+                        className="text-base lg:text-4xl xl:text-5xl font-black leading-[0.8] tracking-tight mb-0.5 lg:mb-3 relative animate-fade-in-up"
                         style={{ animationDelay: "0.2s" }}
                       >
                         <span className="text-white drop-shadow-2xl [text-shadow:_0_4px_12px_rgb(0_0_0_/_80%),_0_0_40px_rgba(255,255,255,0.1)] group-hover:[text-shadow:_0_4px_12px_rgb(0_0_0_/_80%),_0_0_60px_rgba(255,255,255,0.3)] transition-all duration-300">
@@ -305,17 +318,17 @@ export default function LinksPage() {
 
                       {/* Divider Line */}
                       <div
-                        className="w-16 h-1 bg-gradient-to-r from-white/60 via-white/40 to-transparent rounded-full mb-2 group-hover:w-24 transition-all duration-500 animate-fade-in-up"
+                        className="w-8 lg:w-16 h-0.5 lg:h-1 bg-gradient-to-r from-white/60 via-white/40 to-transparent rounded-full mb-0.5 lg:mb-2 group-hover:w-10 lg:group-hover:w-24 transition-all duration-500 animate-fade-in-up"
                         style={{ animationDelay: "0.3s" }}
                       ></div>
 
                       {/* Subtítulo com Badge */}
-                      <div className="mb-2 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
+                      <div className="mb-0.5 lg:mb-2 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
                         <div
-                          className={`inline-flex items-center gap-2 px-4 py-2 ${link.badgeBg} backdrop-blur-md rounded-2xl border border-white/30 shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300`}
+                          className={`inline-flex items-center gap-1 lg:gap-2 px-1.5 lg:px-4 py-0.5 lg:py-2 ${link.badgeBg} backdrop-blur-md rounded-lg lg:rounded-2xl border border-white/30 shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300`}
                         >
-                          <div className="w-1.5 h-1.5 bg-white rounded-full animate-pulse shadow-[0_0_8px_rgba(255,255,255,0.8)]"></div>
-                          <span className="text-sm font-bold text-white tracking-wide drop-shadow-lg">
+                          <div className="w-0.5 h-0.5 lg:w-1.5 lg:h-1.5 bg-white rounded-full animate-pulse shadow-[0_0_8px_rgba(255,255,255,0.8)]"></div>
+                          <span className="text-[8px] lg:text-sm font-bold text-white tracking-wide drop-shadow-lg">
                             {link.subtitle}
                           </span>
                         </div>
@@ -323,7 +336,7 @@ export default function LinksPage() {
 
                       {/* Descrição */}
                       <p
-                        className="text-white/95 text-sm font-medium leading-snug mb-4 max-w-[280px] drop-shadow-lg [text-shadow:_0_2px_8px_rgb(0_0_0_/_60%)] animate-fade-in-up"
+                        className="text-[8px] lg:text-sm font-medium leading-tight lg:leading-snug mb-1.5 lg:mb-4 max-w-full lg:max-w-[280px] drop-shadow-lg [text-shadow:_0_2px_8px_rgb(0_0_0_/_60%)] animate-fade-in-up"
                         style={{ animationDelay: "0.5s" }}
                       >
                         {link.description}
@@ -333,18 +346,18 @@ export default function LinksPage() {
                       <Link
                         href={link.url}
                         target={link.url.startsWith("http") ? "_blank" : "_self"}
-                        className="group/btn animate-fade-in-up"
+                        className="group/btn animate-fade-in-up w-full lg:w-auto"
                         style={{ animationDelay: "0.6s" }}
                       >
-                        <div className="relative inline-flex items-center gap-2">
+                        <div className="relative inline-flex items-center gap-2 w-full lg:w-auto">
                           {/* Glow Effect */}
                           <div className="absolute inset-0 bg-white/30 blur-xl rounded-full opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
 
                           {/* Button */}
-                          <div className="relative flex items-center gap-2 bg-white/95 hover:bg-white text-gray-900 font-black text-sm px-6 py-3 rounded-full shadow-xl hover:shadow-2xl transform hover:scale-110 transition-all duration-300">
+                          <div className="relative flex items-center justify-center gap-1 bg-white/95 hover:bg-white text-gray-900 font-black text-[9px] lg:text-sm px-3.5 lg:px-6 py-1.5 lg:py-3 rounded-full shadow-xl hover:shadow-2xl transform hover:scale-110 transition-all duration-300 w-full lg:w-auto">
                             <span className="tracking-wide">{link.buttonText}</span>
                             <svg
-                              className="w-4 h-4 transform group-hover/btn:translate-x-1 transition-transform"
+                              className="w-2.5 h-2.5 lg:w-4 lg:h-4 transform group-hover/btn:translate-x-1 transition-transform"
                               fill="none"
                               viewBox="0 0 24 24"
                               stroke="currentColor"
@@ -364,12 +377,12 @@ export default function LinksPage() {
         </div>
 
         {/* Footer */}
-        <div className="text-center mt-40 pt-12 border-t border-gray-800 animate-fade-in">
-          <p className="text-lg text-gray-500 mb-4">
+        <div className="text-center mt-20 lg:mt-40 pt-8 lg:pt-12 border-t border-gray-800 animate-fade-in">
+          <p className="text-base lg:text-lg text-gray-500 mb-3 lg:mb-4 px-4">
             🔥 <span className="text-[#1e3a8a] font-semibold">Transforme seu corpo</span> com acompanhamento
             profissional
           </p>
-          <p className="text-sm text-gray-600">&copy; {new Date().getFullYear()} Personal Thiago Rodolfo</p>
+          <p className="text-xs lg:text-sm text-gray-600">&copy; {new Date().getFullYear()} Personal Thiago Rodolfo</p>
         </div>
       </main>
 
