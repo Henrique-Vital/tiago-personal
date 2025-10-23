@@ -4,7 +4,9 @@ import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Send, Sparkles, Calendar, Flame, UsersRound, Zap, ArrowLeft, Award, BookOpenCheck } from "lucide-react"
+import { Send, Award, BookOpenCheck } from "lucide-react"
+// import { Sparkles, Calendar, Flame, UsersRound, Zap } from 'lucide-react'
+import { ArrowLeft } from "lucide-react"
 import { useEffect, useState } from "react"
 
 export default function LinksPage() {
@@ -14,12 +16,34 @@ export default function LinksPage() {
   useEffect(() => {
     setIsLoaded(true)
 
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
-    }
+    // Detecta se é mobile
+    const isMobile = window.innerWidth < 1024
 
-    window.addEventListener("mousemove", handleMouseMove)
-    return () => window.removeEventListener("mousemove", handleMouseMove)
+    if (isMobile) {
+      // Animação automática para mobile
+      let angle = 0
+      const animateMobile = () => {
+        angle += 0.01
+        const centerX = window.innerWidth / 2
+        const centerY = window.innerHeight / 2
+        const radius = Math.min(window.innerWidth, window.innerHeight) * 0.4
+
+        setMousePosition({
+          x: centerX + Math.cos(angle) * radius,
+          y: centerY + Math.sin(angle) * radius,
+        })
+
+        requestAnimationFrame(animateMobile)
+      }
+      animateMobile()
+    } else {
+      // Movimento com mouse para desktop
+      const handleMouseMove = (e: MouseEvent) => {
+        setMousePosition({ x: e.clientX, y: e.clientY })
+      }
+      window.addEventListener("mousemove", handleMouseMove)
+      return () => window.removeEventListener("mousemove", handleMouseMove)
+    }
   }, [])
 
   const links = [
@@ -37,19 +61,6 @@ export default function LinksPage() {
       glowColor: "rgba(34, 197, 94, 0.3)",
     },
     {
-      title: "INSTAGRAM",
-      category: "Siga Agora",
-      subtitle: "Conteúdo Exclusivo",
-      description: "Dicas diárias, receitas fit e transformações reais dos alunos!",
-      icon: Sparkles,
-      url: "https://www.instagram.com/tiagorodolfopersonal/",
-      buttonText: "Seguir Perfil",
-      gradient: "from-purple-600 via-pink-500 to-orange-400",
-      iconBg: "bg-pink-500/20",
-      badgeBg: "bg-pink-400/30",
-      glowColor: "rgba(236, 72, 153, 0.3)",
-    },
-    {
       title: "PEITORAL INSANO",
       category: "Ebook Exclusivo",
       subtitle: "40 Dias de Treino",
@@ -61,6 +72,37 @@ export default function LinksPage() {
       iconBg: "bg-red-500/20",
       badgeBg: "bg-orange-400/30",
       glowColor: "rgba(239, 68, 68, 0.3)",
+    },
+    {
+      title: "COMPLETO",
+      category: "Site",
+      subtitle: "Tudo em Um Lugar",
+      description: "Metodologia, resultados e tudo sobre meu trabalho!",
+      icon: Award,
+      url: "/",
+      buttonText: "Visitar Site",
+      gradient: "from-gray-700 via-gray-600 to-gray-500",
+      iconBg: "bg-gray-500/20",
+      badgeBg: "bg-gray-400/30",
+      glowColor: "rgba(107, 114, 128, 0.3)",
+    },
+  ]
+
+  // Links comentados para uso futuro
+  /*
+  const otherLinks = [
+    {
+      title: "INSTAGRAM",
+      category: "Siga Agora",
+      subtitle: "Conteúdo Exclusivo",
+      description: "Dicas diárias, receitas fit e transformações reais dos alunos!",
+      icon: Sparkles,
+      url: "https://www.instagram.com/tiagorodolfopersonal/",
+      buttonText: "Seguir Perfil",
+      gradient: "from-purple-600 via-pink-500 to-orange-400",
+      iconBg: "bg-pink-500/20",
+      badgeBg: "bg-pink-400/30",
+      glowColor: "rgba(236, 72, 153, 0.3)",
     },
     {
       title: "ONLINE",
@@ -114,42 +156,32 @@ export default function LinksPage() {
       badgeBg: "bg-emerald-400/30",
       glowColor: "rgba(16, 185, 129, 0.3)",
     },
-    {
-      title: "COMPLETO",
-      category: "Site",
-      subtitle: "Tudo em Um Lugar",
-      description: "Metodologia, resultados e tudo sobre meu trabalho!",
-      icon: Award,
-      url: "/",
-      buttonText: "Visitar Site",
-      gradient: "from-gray-700 via-gray-600 to-gray-500",
-      iconBg: "bg-gray-500/20",
-      badgeBg: "bg-gray-400/30",
-      glowColor: "rgba(107, 114, 128, 0.3)",
-    },
   ]
+  */
 
   return (
     <div className="min-h-screen bg-black text-white font-sans relative overflow-hidden">
       {/* Animated Background Gradient */}
       <div
-        className="fixed inset-0 opacity-30 pointer-events-none"
+        className="fixed inset-0 opacity-30 lg:opacity-30 pointer-events-none"
         style={{
-          background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(29, 78, 216, 0.15), transparent 80%)`,
+          background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(29, 78, 216, 0.25), transparent 80%)`,
         }}
       ></div>
 
       {/* Floating Particles */}
       <div className="fixed inset-0 pointer-events-none">
-        {[...Array(20)].map((_, i) => (
+        {[...Array(40)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-1 h-1 bg-white/20 rounded-full animate-float"
+            className="absolute bg-white/20 rounded-full animate-float"
             style={{
+              width: i % 3 === 0 ? "2px" : "1px",
+              height: i % 3 === 0 ? "2px" : "1px",
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
               animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${10 + Math.random() * 10}s`,
+              animationDuration: `${8 + Math.random() * 8}s`,
             }}
           ></div>
         ))}
@@ -169,30 +201,30 @@ export default function LinksPage() {
             </Link>
           </Button>
           <span className="text-base lg:text-xl font-bold text-white">
-            Personal <span className="text-[#1e3a8a]">Thiago Rodolfo</span>
+            Personal <span className="text-[#1e3a8a]">Tiago Rodolfo</span>
           </span>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-4 lg:py-6 max-w-3xl relative z-10">
+      <main className="container mx-auto px-2 md:px-4 lg:px-4 py-4 lg:py-6 max-w-3xl relative z-10">
         {/* Profile Section */}
         <div
           className={`text-center mb-12 lg:mb-20 transition-all duration-1000 ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
-          <div className="relative w-24 h-24 lg:w-32 lg:h-32 mx-auto mb-4 lg:mb-6 group">
+          <div className="relative w-32 h-32 lg:w-44 lg:h-44 mx-auto mb-4 lg:mb-6 group">
             <div className="absolute inset-0 bg-[#1e3a8a] rounded-full blur-xl opacity-50 group-hover:opacity-100 transition-opacity animate-pulse"></div>
-            <div className="relative w-24 h-24 lg:w-32 lg:h-32 rounded-full overflow-hidden border-4 border-[#1e3a8a] shadow-2xl transform group-hover:scale-110 transition-transform duration-300">
+            <div className="relative w-32 h-32 lg:w-44 lg:h-44 rounded-full overflow-hidden border-4 border-[#1e3a8a] shadow-2xl transform group-hover:scale-110 transition-transform duration-300">
               <Image
-                src="/thiago-professional.png"
-                alt="Thiago Rodolfo"
-                width={128}
-                height={128}
-                className="rounded-full w-full h-full object-cover"
+                src="/tiago-real.png"
+                alt="Tiago Rodolfo"
+                width={176}
+                height={176}
+                className="rounded-full w-full h-full object-cover object-top scale-100"
               />
             </div>
           </div>
-          <h1 className="text-2xl lg:text-4xl font-bold mb-3 lg:mb-4 animate-fade-in">Personal Thiago Rodolfo</h1>
+          <h1 className="text-2xl lg:text-4xl font-bold mb-3 lg:mb-4 animate-fade-in">Personal Tiago Rodolfo</h1>
           <p
             className="text-gray-400 text-sm lg:text-lg mb-4 lg:mb-6 leading-relaxed animate-fade-in px-4"
             style={{ animationDelay: "0.2s" }}
@@ -240,7 +272,7 @@ export default function LinksPage() {
                     ></div>
 
                     <div
-                      className={`bg-gradient-to-r ${link.gradient} rounded-[2rem] lg:rounded-[3rem] relative min-h-[145px] lg:h-[280px] flex items-center shadow-2xl group-hover:shadow-[0_0_50px_rgba(255,255,255,0.1)] transition-all duration-500`}
+                      className={`bg-gradient-to-r ${link.gradient} rounded-[2rem] lg:rounded-[3rem] relative min-h-[180px] md:min-h-[240px] lg:h-[300px] flex items-center shadow-2xl group-hover:shadow-[0_0_50px_rgba(255,255,255,0.1)] transition-all duration-500`}
                       style={{ overflow: "visible" }}
                     >
                       {/* Animated Pattern Overlay */}
@@ -259,9 +291,9 @@ export default function LinksPage() {
                         <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
                       </div>
 
-                      {/* Foto do Thiago - Visível em todas as telas */}
+                      {/* Foto do Tiago - Visível em todas as telas */}
                       <div
-                        className="absolute left-0 top-0 bottom-0 w-[35%] lg:w-[42%]"
+                        className="absolute left-0 top-0 bottom-0 w-[90%] md:w-[42%] lg:w-[44%]"
                         style={{ overflow: "visible", zIndex: 10 }}
                       >
                         <div
@@ -269,11 +301,11 @@ export default function LinksPage() {
                           style={{ overflow: "visible" }}
                         >
                           <Image
-                            src="/thiago-professional.png"
-                            alt="Thiago Rodolfo"
-                            width={340}
-                            height={380}
-                            className="absolute left-2 lg:left-10 bottom-0 w-[130px] h-[170px] lg:w-[270px] lg:h-[360px] object-cover object-top scale-115 group-hover:scale-[1.2] transition-transform duration-500"
+                            src="/tiago-real.png"
+                            alt="Tiago Rodolfo"
+                            width={380}
+                            height={450}
+                            className="absolute left-1 md:left-4 lg:left-10 bottom-0 w-[210px] h-[257px] md:w-[260px] md:h-[320px] lg:w-[340px] lg:h-[440px] object-contain object-bottom scale-100 group-hover:scale-110 transition-transform duration-500"
                             style={{
                               filter: "drop-shadow(0 8px 25px rgba(0,0,0,0.6))",
                               zIndex: 15,
@@ -284,12 +316,12 @@ export default function LinksPage() {
 
                       {/* Conteúdo */}
                       <div
-                        className="relative w-full flex-1 pl-[40%] pr-3 lg:pl-[46%] lg:pr-8 py-2 lg:py-6 flex flex-col justify-center items-start text-left"
+                        className="relative w-full flex-1 pl-[55%] pr-1 md:pl-[48%] md:pr-6 lg:pl-[50%] lg:pr-8 py-2 lg:py-6 flex flex-col justify-start items-start text-left"
                         style={{ zIndex: 5 }}
                       >
                         {/* Ícone Flutuante */}
                         <div
-                          className="absolute -top-2 -right-2 lg:-top-4 lg:-right-4 animate-bounce-slow"
+                          className="absolute -top-1 -right-1 md:-top-2 md:-right-2 lg:-top-4 lg:-right-4 animate-bounce-slow"
                           style={{ zIndex: 20 }}
                         >
                           <div className="relative">
@@ -297,23 +329,23 @@ export default function LinksPage() {
                               className={`absolute inset-0 ${link.iconBg} blur-2xl rounded-full scale-150 animate-pulse`}
                             ></div>
                             <div
-                              className={`relative ${link.iconBg} backdrop-blur-xl rounded-xl lg:rounded-3xl p-1.5 lg:p-4 border-2 border-white/40 shadow-2xl group-hover:scale-110 group-hover:rotate-12 transition-all duration-300`}
+                              className={`relative ${link.iconBg} backdrop-blur-xl rounded-xl lg:rounded-3xl p-2.5 md:p-3 lg:p-4 border-2 border-white/40 shadow-2xl group-hover:scale-110 group-hover:rotate-12 transition-all duration-300`}
                             >
-                              <link.icon className="h-4 w-4 lg:h-8 lg:w-8 text-white stroke-[2.5]" />
+                              <link.icon className="h-6 w-6 md:h-6 md:w-6 lg:h-8 lg:w-8 text-white stroke-[2.5]" />
                             </div>
                           </div>
                         </div>
 
                         {/* Category Tag */}
                         <div className="mb-0.5 lg:mb-2 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
-                          <span className="inline-block text-[7px] lg:text-[9px] font-black uppercase tracking-[0.15em] lg:tracking-[0.25em] text-white/60 px-1.5 lg:px-3 py-0.5 lg:py-2 bg-black/20 backdrop-blur-sm rounded-full border border-white/20 shadow-[0_0_12px_rgba(0,0,0,0.3)] group-hover:border-white/40 transition-colors">
+                          <span className="inline-block text-[8px] md:text-[8px] lg:text-[9px] font-black uppercase tracking-[0.15em] lg:tracking-[0.25em] text-white/60 px-2 md:px-2.5 lg:px-3 py-1 md:py-1.5 lg:py-2 bg-black/20 backdrop-blur-sm rounded-full border border-white/20 shadow-[0_0_12px_rgba(0,0,0,0.3)] group-hover:border-white/40 transition-colors">
                             {link.category}
                           </span>
                         </div>
 
                         {/* Título Principal */}
                         <h2
-                          className="text-base lg:text-4xl xl:text-5xl font-black leading-[0.8] tracking-tight mb-0.5 lg:mb-3 relative animate-fade-in-up"
+                          className="text-sm md:text-2xl lg:text-3xl xl:text-4xl font-black leading-[0.8] tracking-tight mb-0.5 lg:mb-3 relative animate-fade-in-up"
                           style={{ animationDelay: "0.2s" }}
                         >
                           <span className="text-white drop-shadow-2xl [text-shadow:_0_4px_12px_rgb(0_0_0_/_80%),_0_0_40px_rgba(255,255,255,0.1)] group-hover:[text-shadow:_0_4px_12px_rgb(0_0_0_/_80%),_0_0_60px_rgba(255,255,255,0.3)] transition-all duration-300">
@@ -323,17 +355,17 @@ export default function LinksPage() {
 
                         {/* Divider Line */}
                         <div
-                          className="w-8 lg:w-16 h-0.5 lg:h-1 bg-gradient-to-r from-white/60 via-white/40 to-transparent rounded-full mb-0.5 lg:mb-2 group-hover:w-10 lg:group-hover:w-24 transition-all duration-500 animate-fade-in-up"
+                          className="w-8 md:w-12 lg:w-16 h-0.5 lg:h-1 bg-gradient-to-r from-transparent via-white/60 to-transparent rounded-full mb-0.5 lg:mb-2 group-hover:w-10 md:group-hover:w-16 lg:group-hover:w-24 transition-all duration-500 animate-fade-in-up"
                           style={{ animationDelay: "0.3s" }}
                         ></div>
 
                         {/* Subtítulo com Badge */}
                         <div className="mb-0.5 lg:mb-2 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
                           <div
-                            className={`inline-flex items-center gap-1 lg:gap-2 px-1.5 lg:px-4 py-0.5 lg:py-2 ${link.badgeBg} backdrop-blur-md rounded-lg lg:rounded-2xl border border-white/30 shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300`}
+                            className={`inline-flex items-center gap-1 lg:gap-2 px-2 md:px-3 lg:px-4 py-1 md:py-1.5 lg:py-2 ${link.badgeBg} backdrop-blur-md rounded-lg lg:rounded-2xl border border-white/30 shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300`}
                           >
-                            <div className="w-0.5 h-0.5 lg:w-1.5 lg:h-1.5 bg-white rounded-full animate-pulse shadow-[0_0_8px_rgba(255,255,255,0.8)]"></div>
-                            <span className="text-[8px] lg:text-sm font-bold text-white tracking-wide drop-shadow-lg">
+                            <div className="w-1 h-1 md:w-1 md:h-1 lg:w-1.5 lg:h-1.5 bg-white rounded-full animate-pulse shadow-[0_0_8px_rgba(255,255,255,0.8)]"></div>
+                            <span className="text-[9px] md:text-xs lg:text-sm font-bold text-white tracking-wide drop-shadow-lg">
                               {link.subtitle}
                             </span>
                           </div>
@@ -341,7 +373,7 @@ export default function LinksPage() {
 
                         {/* Descrição */}
                         <p
-                          className="text-[8px] lg:text-sm font-medium leading-tight lg:leading-snug mb-1.5 lg:mb-4 max-w-full lg:max-w-[280px] drop-shadow-lg [text-shadow:_0_2px_8px_rgb(0_0_0_/_60%)] animate-fade-in-up"
+                          className="text-[9px] md:text-xs lg:text-sm font-medium leading-tight lg:leading-snug mb-1.5 md:mb-3 lg:mb-4 max-w-full md:max-w-[240px] lg:max-w-[280px] drop-shadow-lg [text-shadow:_0_2px_8px_rgb(0_0_0_/_60%)] animate-fade-in-up"
                           style={{ animationDelay: "0.5s" }}
                         >
                           {link.description}
@@ -350,10 +382,10 @@ export default function LinksPage() {
                         {/* CTA Text */}
                         <div className="animate-fade-in-up w-full lg:w-auto" style={{ animationDelay: "0.6s" }}>
                           <div className="relative inline-flex items-center gap-1.5 w-full lg:w-auto">
-                            <div className="relative flex items-center justify-center gap-1.5 bg-white/10 backdrop-blur-md border border-white/30 text-white font-bold text-[9px] lg:text-sm px-3.5 lg:px-6 py-1.5 lg:py-3 rounded-full shadow-lg group-hover:bg-white/20 group-hover:border-white/50 group-hover:shadow-xl transition-all duration-300 w-full lg:w-auto">
+                            <div className="relative flex items-center justify-center gap-1.5 bg-white/10 backdrop-blur-md border border-white/30 text-white font-bold text-[10px] md:text-xs lg:text-sm px-4 md:px-5 lg:px-6 py-2 md:py-2.5 lg:py-3 rounded-full shadow-lg group-hover:bg-white/20 group-hover:border-white/50 group-hover:shadow-xl transition-all duration-300 w-full lg:w-auto">
                               <span className="tracking-wide drop-shadow-lg">{link.buttonText}</span>
                               <svg
-                                className="w-2.5 h-2.5 lg:w-4 lg:h-4 transform group-hover:translate-x-1 transition-transform"
+                                className="w-3 h-3 md:w-3.5 md:h-3.5 lg:w-4 lg:h-4 transform group-hover:translate-x-1 transition-transform"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -379,7 +411,7 @@ export default function LinksPage() {
             🔥 <span className="text-[#1e3a8a] font-semibold">Transforme seu corpo</span> com acompanhamento
             profissional
           </p>
-          <p className="text-xs lg:text-sm text-gray-600">&copy; {new Date().getFullYear()} Personal Thiago Rodolfo</p>
+          <p className="text-xs lg:text-sm text-gray-600">&copy; {new Date().getFullYear()} Personal Tiago Rodolfo</p>
         </div>
       </main>
 

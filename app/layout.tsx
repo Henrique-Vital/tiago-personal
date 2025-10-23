@@ -6,7 +6,7 @@ import "./globals.css"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Personal Thiago Rodolfo - Transforme seu Corpo",
+  title: "Personal Tiago Rodolfo - Transforme seu Corpo",
   description:
     "Acompanhamento profissional para você alcançar seus objetivos de forma segura e eficiente. Consultoria Online, Treino Presencial e em Grupo.",
     generator: 'v0.app'

@@ -31,9 +31,9 @@ export default function ModernPersonalTrainerPage() {
       <header className="px-4 lg:px-8 h-20 flex items-center fixed top-0 left-0 right-0 z-50 bg-black/60 backdrop-blur-lg border-b border-gray-800">
         <Link href="/" className="flex items-center justify-center" prefetch={false}>
           <span className="text-2xl md:text-3xl font-extrabold text-white tracking-tight">
-            Personal <span className="text-[#1e3a8a]">Thiago Rodolfo</span>
+            Personal <span className="text-[#1e3a8a]">Tiago Rodolfo</span>
           </span>
-          <span className="sr-only">Personal Thiago Rodolfo</span>
+          <span className="sr-only">Personal Tiago Rodolfo</span>
         </Link>
         <nav className="ml-auto hidden lg:flex gap-6 items-center">
           <button
@@ -160,7 +160,7 @@ export default function ModernPersonalTrainerPage() {
                 QUEM GUIA SEU TREINO
               </div>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white">
-                Thiago Rodolfo: Mais que um Personal, um Parceiro de Treino.
+                Tiago Rodolfo: Mais que um Personal, um Parceiro de Treino.
               </h2>
               <p className="text-gray-400 text-lg">
                 Com uma paixão que vai do levantamento de peso à ciência do movimento, minha missão é desmistificar o
@@ -190,7 +190,7 @@ export default function ModernPersonalTrainerPage() {
             <div className="relative h-[500px] rounded-2xl overflow-hidden shadow-2xl">
               <Image
                 src="/thiago-rodolfo.png"
-                alt="Foto de Thiago Rodolfo"
+                alt="Foto de Tiago Rodolfo"
                 layout="fill"
                 objectFit="cover"
                 className="transform hover:scale-105 transition-transform duration-500"
@@ -323,7 +323,7 @@ export default function ModernPersonalTrainerPage() {
       <footer className="w-full py-8 border-t border-gray-800 bg-black">
         <div className="container mx-auto px-4 md:px-6 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
           <div className="mb-4 md:mb-0">
-            <p className="text-sm text-gray-400">&copy; {new Date().getFullYear()} Personal Thiago Rodolfo.</p>
+            <p className="text-sm text-gray-400">&copy; {new Date().getFullYear()} Personal Tiago Rodolfo.</p>
             <p className="text-xs text-gray-600">Todos os direitos reservados.</p>
           </div>
           <div className="flex gap-6">
